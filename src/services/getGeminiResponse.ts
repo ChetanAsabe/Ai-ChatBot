@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const getGeiniResponse = async (prompt: string): Promise<string> => {
+const getGeminiResponse = async (prompt: string): Promise<string> => {
   try {
     const genAi = new GoogleGenerativeAI(
       "AIzaSyDs7RuE5tst_r1XAoOMmIhgt-QeGEHJXCc"
@@ -21,8 +21,8 @@ const getGeiniResponse = async (prompt: string): Promise<string> => {
     if (error instanceof Error) {
       return error.message;
     }
-    return "Unknown Error occured!";
+    return "Unknown Error occurred!";
   }
 };
 
-export default getGeiniResponse;
+export default getGeminiResponse;

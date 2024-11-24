@@ -26,23 +26,23 @@ const UserInput: React.FC<UserInputProps> = ({ onSendMessage }) => {
   };
 
   return (
-    <div className="flex justify-between items-center bg-gray-50 rounded-full absolute bottom-0 w-[44vh] h-14 text-center m-2 pe-2 ps-1">
-      <input
-        type="text"
-        value={userInput}
-        onChange={handleChange}
-        onKeyDown={handleKeypress}
-        placeholder="Send a message.."
-        className="p-2 bg-transparent w-full focus:outline-none text-black text-lg"
-      />
-      <button
-        aria-label="Send message"
-        onClick={handleSendMessage}
-        className="bg-black text-white rounded-full px-4 py-2 text-lg"
-      >
-        ➜
-      </button>
-    </div>
+      <div className="flex justify-between items-center bg-gray-50 rounded-full fixed bottom-4 left-1/2 transform -translate-x-1/2 w-full max-w-lg h-14 px-4 shadow-md">
+        <input
+            type="text"
+            value={userInput}
+            onChange={handleChange}
+            onKeyDown={handleKeypress}
+            placeholder="Send a message..."
+            className="flex-grow bg-transparent focus:outline-none text-black text-lg placeholder-gray-500"
+        />
+        <button
+            aria-label="Send message"
+            onClick={handleSendMessage}
+            className="bg-black text-white rounded-full px-4 py-2 text-lg hover:bg-gray-800 focus:outline-none focus:ring focus:ring-black"
+        >
+          ➜
+        </button>
+      </div>
   );
 };
 

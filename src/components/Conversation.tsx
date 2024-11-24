@@ -65,41 +65,49 @@ const Conversation = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col">
-      <div className="flex-1 overflow-auto scroll-smooth max-h-[92vh]">
-        {messages.length > 0 ? (
-          messages.map((message) => (
-            <div
-              key={message.id}
-              className={`text-lg px-3 py-1 m-3 rounded-lg w-fit max-w-[80%] overflow-hidden ${message.sender === "user"
-                ? "bg-gray-100 ml-auto shadow"
-                : "bg-gray-50 mr-auto shadow-lg"
-                }`}
-              dangerouslySetInnerHTML={{ __html: message.content }}
-            />
-          ))
-        ) : (
-          <div className="flex justify-center items-center h-[85vh] overflow-hidden">
-            <p className="text-xl font-bold">How can I help you?</p>
+      <div className="h-screen flex justify-center items-center bg-gray-100 overflow-scroll">
+        <div className="flex flex-col w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2 h-full max-h-[90vh] bg-white shadow-xl rounded-lg overflow-hidden border border-gray-200">
+          {/* Message Container */}
+          <div className="flex-1 overflow-y-auto scroll-smooth p-4">
+            {messages.length > 0 ? (
+                messages.map((message) => (
+                    <div
+                        key={message.id}
+                        className={`text-lg px-4 py-2 my-2 rounded-lg max-w-[80%] overflow-hidden ${
+                            message.sender === "user"
+                                ? "bg-blue-100 text-blue-900 ml-auto shadow-md"
+                                : "bg-gray-200 text-gray-800 mr-auto shadow-sm"
+                        }`}
+                        dangerouslySetInnerHTML={{ __html: message.content }}
+                    />
+                ))
+            ) : (
+                <div className="flex justify-center items-center h-full">
+                  <p className="text-xl font-semibold text-gray-600">
+                    How can I help you?
+                  </p>
+                </div>
+            )}
+
+            {loading && (
+                <div className="flex justify-start items-center m-4">
+                  <div className="w-8 h-8 border-4 border-blue-500 border-solid rounded-full border-t-transparent animate-spin"></div>
+                </div>
+            )}
+
+            <div ref={messagesEndRef} />
           </div>
-        )}
 
-        {loading && (
-          <div className="flex justify-start items-center m-4">
-            <div className="w-8 h-8 border-4 border-blue-500 border-solid rounded-full border-t-transparent animate-spin"></div>
+          {/* Input Field */}
+          <div className="flex justify-center items-center w-full py-4 sm:py-6">
+            <div className="w-full px-4 sm:w-3/4 lg:w-2/3">
+              <UserInput onSendMessage={handleDataFromInput} />
+            </div>
           </div>
-        )}
-
-        <div ref={messagesEndRef} />
-      </div>
-
-      <div className="flex justify-center items-center w-full py-4 sm:py-6 lg:py-8">
-        <div className="w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3">
-          <UserInput onSendMessage={handleDataFromInput} />
         </div>
       </div>
-    </div>
   );
+
 };
 
 export default Conversation;
